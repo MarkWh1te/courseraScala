@@ -36,11 +36,12 @@ object notes {
 
 object functionData{
   def main(args: Array[String]) {
-    val a = new Rational(1,2)
-    val b = new Rational(2,3)
+    val a = new Rational(10,20)
+    val b = new Rational(24,3)
     println(a.neg)
     println(b)
-    println(a.add(b))
+    // println(a.add(b))
+    println(a add b)
     println(a.mul(b))
     val x = new Rational(1, 3)
     val y = new Rational(5, 7)
@@ -48,8 +49,9 @@ object functionData{
     println( x.add(y).mul(z) )
   }
   class Rational(x:Int,y:Int){
-    def numer = x
-    def denom = y
+    private def gcd(a:Int,b:Int):Int = if (b == 0) a else gcd(b,a % b)
+    def numer = x/gcd(x,y)
+    def denom = y/gcd(x,y)
     def add(r:Rational) = {
       new Rational(r.numer * denom + r.denom * numer,
                    r.denom * denom)
