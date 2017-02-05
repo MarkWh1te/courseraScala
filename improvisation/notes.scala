@@ -1,3 +1,4 @@
+// somethings i write when i am watching coursera lecture notes
 object notes{
   def main(args:Array[String])=
     // println(product(x => x+1,1,4))
