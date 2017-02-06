@@ -36,13 +36,13 @@ object FunSets {
   /**
    * Returns the difference of the two given sets,
    * the set of all elements of `s` that are not in `t`.
-   */
+  */
     def diff(s: Set, t: Set): Set = set => contains(s,set) && !contains(t,set)
 
   /**
    * Returns the subset of `s` for which `p` holds.
    */
-    def filter(s: Set, p: Int => Boolean): Set = ???
+    def filter(s: Set, p: Int => Boolean): Set = set => contains(s,set) && p(set)
 
   /**
    * The bounds for `forall` and `exists` are +/- 1000.
@@ -53,25 +53,41 @@ object FunSets {
    * Returns whether all bounded integers within `s` satisfy `p`.
    */
     def forall(s: Set, p: Int => Boolean): Boolean = {
-    def iter(a: Int): Boolean = {
-      if (???) ???
-      else if (???) ???
-      else iter(???)
+
+      def iter(a: Int): Boolean = {
+      if (bound < a) true
+      else if (contains(s,a) && !p(a)) false
+      else iter(a+1)
     }
-    iter(???)
-  }
-  
+    iter(bound*(-1))
+    }
+
   /**
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
    */
-    def exists(s: Set, p: Int => Boolean): Boolean = ???
-  
+  def exists(s: Set, p: Int => Boolean): Boolean = {
+    def iter(a:Int) :Boolean ={
+      if (bound < a) false
+      else if (contains(s,a) && p(a)) true
+      else iter(a+1)
+    }
+    iter(bound*(-1))
+  }
+
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
    */
-    def map(s: Set, f: Int => Int): Set = ???
-  
+  def map(s: Set, f: Int => Int): Set = set => {
+    def iter(a:Int) :Boolean ={
+      if(bound < a) false
+      else if (contains(s,a)&&f(a)==set) true
+      else iter(a+1)
+    }
+    iter(bound*(-1))
+  }
+
+
   /**
    * Displays the contents of a set
    */

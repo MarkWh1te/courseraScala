@@ -107,6 +107,12 @@ class FunSetSuite extends FunSuite {
       assert(contains(s, 1), "Union 1")
       assert(contains(s, 2), "Union 2")
       assert(!contains(s, 3), "Union 3")
+      assert(forall(s,x=>x<100))
+      assert(exists(s,x=>x==1))
+      val b = map(s,x=>x+1)
+      printSet(s)
+      printSet(b)
+      assert(contains(b,3))
     }
   }
 
