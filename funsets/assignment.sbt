@@ -1,2 +1,2 @@
-course := "progfun1"
+ := "progfun1"
 assignment := "funsets"
