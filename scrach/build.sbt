@@ -54,7 +54,7 @@ scalacOptions ++= Seq(
     "-Ywarn-dead-code",
     "-Xfuture")
 
-initialCommands := "import markwh1te.scrach._"
+//initialCommands := "import markwh1te.scrach._"
 
 SbtScalariform.scalariformSettings
 
