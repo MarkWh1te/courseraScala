@@ -19,6 +19,7 @@ class HuffmanSuite extends FunSuite {
     new TestTrees {
       println(weight(t1))
       assert(weight(t1) === 5)
+      println(times("aaaadddffff".toList))
     }
   }
 
@@ -43,6 +44,7 @@ class HuffmanSuite extends FunSuite {
   test("combine of some leaf list") {
     val leaflist = List(Leaf('e', 1), Leaf('t', 2), Leaf('x', 4))
     assert(combine(leaflist) === List(Fork(Leaf('e',1),Leaf('t',2),List('e', 't'),3), Leaf('x',4)))
+    println("faf")
   }
 
 

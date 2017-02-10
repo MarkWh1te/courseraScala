@@ -74,7 +74,7 @@ object Huffman {
    *       println("integer is  : "+ theInt)
    *   }
    */
-  def times(chars: List[Char]): List[(Char, Int)] =  chars.map(x=>(x,chars.count(_==x)))
+  def times(chars: List[Char]): List[(Char, Int)] =  chars.groupBy(x=>x).map(x=>(x._1,x._2.length)).toList
   /**
    * Returns a list of `Leaf` nodes for a given frequency table `freqs`.
    *
@@ -88,7 +88,11 @@ object Huffman {
   /**
    * Checks whether the list `trees` contains only one single code tree.
    */
-   def singleton(trees: List[CodeTree]): Boolean = trees.tail == Nil
+
+  def singleton(trees: List[CodeTree]): Boolean = trees match {
+    case Nil => false
+    case x:List[CodeTree] => x.tail == Nil
+  }
 
   /**
    * The parameter `trees` of this function is a list of code trees ordered
@@ -102,8 +106,10 @@ object Huffman {
    * unchanged.
    */
 
-  def combine(trees: List[CodeTree]): List[CodeTree] = if (singleton(trees) || singleton(trees.tail)) trees else makeCodeTree(trees.head,trees.tail.head)::combine(trees.tail.tail)
-  /**
+  // def combine(trees: List[CodeTree]): List[CodeTree] = if (singleton(trees) || singleton(trees.tail)) trees else makeCodeTree(trees.head,trees.tail.head)::combine(trees.tail.tail)
+  def combine(trees: List[CodeTree]): List[CodeTree] = if (trees.length < 2) trees else makeCodeTree(trees.head,trees.tail.head)::combine(trees.tail.tail)
+
+   /**
    * This function will be called in the following way:
    *
    *   until(singleton, combine)(trees)
@@ -139,12 +145,15 @@ object Huffman {
    * the resulting list of characters.
    */
   def decode(tree: CodeTree, bits: List[Bit]): List[Char] = {
-    def decodeAcc(tree:CodeTree,bits:List[Bit],accu:List[Char]):List[Char] = {(tree,bits) match{
-      case (tree:Leaf,Nil) => accu :+ tree.char
-      case(tree:Leaf,bits:List[Bit]) => decodeAcc(tree,bits,accu:+tree.char)
-      case(tree:Fork,0::rest)=>decodeAcc(tree.left,rest,accu)
-      case(tree:Fork,1::rest)=>decodeAcc(tree.right,rest,accu)
-                                                                              }
+    def decodeAcc(tree0: CodeTree, bits0: List[Bit], accu: List[Char]): List[Char] = bits0 match {
+	    case Nil => tree0 match {
+	      case l: Leaf => accu :+ l.char
+	      case f: Fork => println("Invalid encoding!"); accu
+	    }
+	    case x :: xs => tree0 match {
+	      case l: Leaf => decodeAcc(tree, bits0, accu :+ l.char)
+	      case f: Fork => decodeAcc(if (x == 0) f.left else f.right, xs, accu)
+	    }
     }
     decodeAcc(tree,bits,List())
   }
