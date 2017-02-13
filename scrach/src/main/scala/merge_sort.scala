@@ -2,9 +2,9 @@ package week5
 
 object MergeSort {
   // def main(args: Array[String]): Unit = {
-    // val testList = List(7, 2, 4, 56, 6)
-    // val soredList = msort(testList)
-    // println(soredList)
+  // val testList = List(7, 2, 4, 56, 6)
+  // val soredList = msort(testList)
+  // println(soredList)
   // }
   def msort(list: List[Int]): List[Int] = {
     val n = list.length / 2

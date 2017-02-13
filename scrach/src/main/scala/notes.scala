@@ -1,12 +1,15 @@
 package week2
 // somethings i write when i am watching coursera lecture notes
 object notes {
-  // def main(args: Array[String]) =
-  // println(product(x => x+1,1,4))
-  // println(factorial(10))
-  // println(sum(x=>x*x)(1,10))
-  // println(sumCurrystyle(x ⇒ x * x)(1, 10))
-  // println()
+  def main(args: Array[String]) =
+    // println(product(x => x+1,1,4))
+    // println(factorial(10))
+    // println(sum(x=>x*x)(1,10))
+    // println(sumCurrystyle(x ⇒ x * x)(1, 10))
+    // println(isPrime(4))
+    println(isPrime(10))
+
+  def isPrime(n: Int): Boolean = (2 until n) forall (x ⇒ n % x != 0)
 
   def product(f: Int ⇒ Int, a: Int, b: Int): Int =
     if (a > b) 1
