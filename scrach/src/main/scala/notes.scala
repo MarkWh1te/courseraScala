@@ -1,18 +1,18 @@
 package week2
 // somethings i write when i am watching coursera lecture notes
 object notes {
-  def main(args: Array[String]) = {
-    // println(product(x => x+1,1,4))
-    // println(factorial(10))
-    // println(sum(x=>x*x)(1,10))
-    // println(sumCurrystyle(x ⇒ x * x)(1, 10))
-    // println(isPrime(4))
-    println(isPrime(10))
-    val xss = ((1 until 10) map (i ⇒ (1 until i) map (j ⇒ (i, j))))
-    println(xss)
-    println(xss.flatten)
-    println(scalarProduct(List(1, 2, 3), List(4, 5, 6)))
-  }
+  // def main(args: Array[String]) = {
+  // println(product(x => x+1,1,4))
+  // println(factorial(10))
+  // println(sum(x=>x*x)(1,10))
+  // println(sumCurrystyle(x ⇒ x * x)(1, 10))
+  // println(isPrime(4))
+  //   println(isPrime(10))
+  //   val xss = ((1 until 10) map (i ⇒ (1 until i) map (j ⇒ (i, j))))
+  //   println(xss)
+  //   println(xss.flatten)
+  //   println(scalarProduct(List(1, 2, 3), List(4, 5, 6)))
+  // }
 
   def scalarProduct(xs: List[Double], ys: List[Double]): Double =
     (for ((x, y) ← xs zip ys) yield x * y).sum

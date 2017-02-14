@@ -9,10 +9,10 @@ object InsertionSort {
     case List()  ⇒ List(x)
     case y :: ys ⇒ if (x <= y) x :: xs else y :: insert(x, ys)
   }
-  def main(args: Array[String]): Unit = {
-    val testList = List(7, 2, 4, 56, 6)
-    val soredList = issort(testList)
-    println(testList)
-    println(soredList)
-  }
+  // def main(args: Array[String]): Unit = {
+  //   val testList = List(7, 2, 4, 56, 6)
+  //   val soredList = issort(testList)
+  //   println(testList)
+  //   println(soredList)
+  // }
 }
