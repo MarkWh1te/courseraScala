@@ -173,8 +173,10 @@ object Anagrams {
       occurrences match {
         case List() => List(List())
         case occurrences:Occurrences =>  for {
-          occurrences <- combinations(occurrences)
-          word <- loadDictionary(occurrences)
-        }
+          occurrencesCombinations <- combinations(occurrences)
+          word <- dictionaryByOccurrences(occurrencesCombinations)
+          tail <- sentenceAnagramsAcc(subtract(occurrences,occurrencesCombinations))
+        } yield word::tail
       }
-  }
+    sentenceAnagramsAcc(sentenceOccurrences(sentence))
+  }}
